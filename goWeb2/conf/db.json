@@ -1,0 +1,8 @@
+{
+  "host": "localhost",
+  "port": 3306,
+  "db-name": "GO_TRAINING",
+  "charset": "utf8",
+  "user": "root",
+  "pass": "mha8ru6ki9m"
+}
