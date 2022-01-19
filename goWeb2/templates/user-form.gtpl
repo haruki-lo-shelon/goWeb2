@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html>
+<head>
+  <link rel="stylesheet" type="text/css" href="../asset/css/style.css">
+</head>
 <body>
   <h2>新規ユーザの登録</h2>
   <form action="user-confirm" method="post">
@@ -17,7 +20,7 @@
           <td><input type="password" name="passwd"></td>
         </tr>
     </table>
-    <input type="submit" value="確認画面へ">
+    <input type="submit" class="btn-push btn-push-blue" value="確認画面へ">
   </form>
 </body>
 </html>
