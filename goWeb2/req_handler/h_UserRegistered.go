@@ -8,6 +8,7 @@ import (
 
     "goWeb2/conf"    // 実装した設定パッケージの読み込み
     "goWeb2/query"   // 実装したクエリパッケージの読み込み
+		"goWeb2/utility" // 実装したユーティリティパッケージの読み込み
     _ "github.com/go-sql-driver/mysql"
 )
 
@@ -54,8 +55,11 @@ func insertPostedUser(req *http.Request) string {
     // deferで処理終了前に必ず接続をクローズする
     defer db.Close()
 
+		// パスワードをハッシュ化(sha256)
+    hashedPwd := utility.HashStr(req.FormValue("passwd"), "sha256")
+
     // POST値を渡してINSERT処理を実行
-    _, err = query.InsertUser(req.FormValue("account"), req.FormValue("name"), req.FormValue("passwd"), db)
+    _, err = query.InsertUser(req.FormValue("account"), req.FormValue("name"), hashedPwd, db)
     if err != nil {
         result = "ユーザ情報の登録に失敗しました。"
     }
