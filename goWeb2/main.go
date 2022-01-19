@@ -7,7 +7,10 @@ import (
 
 func main() {
 
-    // "user-form"へのリクエストを関数で処理する
+		// "user-list"へのリクエストを関数で処理する
+    http.HandleFunc("/user-list", req_handler.HandlerUserList)
+
+		// "user-form"へのリクエストを関数で処理する
     http.HandleFunc("/user-form", req_handler.HandlerUserForm)
 
     // "user-confirm"へのリクエストを関数で処理する
