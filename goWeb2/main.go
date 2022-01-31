@@ -1,6 +1,7 @@
 package main
 
 import (
+		"fmt"
     "net/http"
     "goWeb2/req_handler" // 実装したHTTPリクエストハンドラパッケージの読み込み
 )
@@ -29,5 +30,9 @@ func main() {
     http.Handle("/asset/", http.StripPrefix("/asset/", http.FileServer(http.Dir("asset/"))))
 
     // サーバーを起動
-    http.ListenAndServe(":8080", nil)
+    //http.ListenAndServe(":8080", nil)
+    err := http.ListenAndServeTLS(":10443", "crt/localhost.crt", "crt/localhost.key", nil)
+    if err != nil {
+        fmt.Printf("ERROR : %s", err)
+    }
 }
