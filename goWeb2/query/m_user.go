@@ -44,6 +44,25 @@ func InsertUser(acc, name, pw string, db *sql.DB) (id int64, err error) {
     return insertedId, nil
 }
 
+// データ更新関数
+func UpdateUser(acc, name, pw, id string, db *sql.DB) (err error) {
+
+	// プリペアードステートメント
+	stmt, err := db.Prepare("UPDATE M_USER SET ACCOUNT = ? ,NAME = ? , PASSWORD = ? WHERE ID = ?")
+	if err != nil {
+			return err
+	}
+	defer stmt.Close()
+
+	// クエリ実行
+	_, err = stmt.Exec(acc, name, pw, id)
+	if err != nil {
+			return err
+	}
+
+	return nil
+}
+
 // 単一行データ取得関数
 func SelectUserById(id int64, db *sql.DB) (userinfo M_USER, err error) {
 
